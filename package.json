@@ -13,8 +13,10 @@
     "concurrently": "^8.2.1",
     "directory-tree": "^3.5.1",
     "fs": "^0.0.1-security",
-    "serve": "^14.2.1",
     "node-osc": "^1.2.0",
-		"socket.io": "^1.7.4"
+    "osc": "^2.4.4",
+    "serve": "^14.2.1",
+    "socket.io": "^1.7.4",
+    "ws": "^8.14.2"
   }
 }

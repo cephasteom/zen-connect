@@ -15,7 +15,13 @@ yarn # use yarn to install dependencies
 ```
 
 ## Usage
+`npm run start` or `yarn start` runs the following services:
+### OSC connection
+Browsers can't send OSC messages directly. They have to send an OSC formatted message via a websocket, which is then sent on as a proper OSC message by a separate server. Spin up this server then reload Zen with `?osc=true` at the end of the url; e.g. `https://zen.cephasteom.co.uk?osc=true`. All being well you should see a message in the console informing you that Zen has connected and is sending OSC messages.
+
+...
 ### Samples
+Zen knows to look on localhost:5000 for samples. To serve your own samples:
 * Drag folders of samples into `samples` folder. The file structure should look something like this:
 ```
 ├── samples  

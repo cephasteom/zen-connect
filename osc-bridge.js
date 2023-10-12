@@ -1,28 +1,34 @@
-// Adapted from https://github.com/automata/osc-web, with thanks
-var osc = require('node-osc'),
-    io = require('socket.io').listen(8081);
+const WebSocket = require("ws");
+const osc = require("osc");
 
-var oscServer, oscClient;
+const udpPortSend = new osc.UDPPort({
+  localAddress: "127.0.0.1",
+  localPort: 57121,
+  // This is where sclang is listening for OSC messages.
+  remoteAddress: "127.0.0.1",
+  remotePort: 57120,
+  metadata: true
+});
 
-io.on('connection', function (socket) {
-  socket.on('config', function (obj) {
-    console.log('config', obj);
-    oscServer = new osc.Server(obj.server.port, obj.server.host);
-    oscClient = new osc.Client(obj.client.host, obj.client.port);
+udpPortSend.open();
 
-    oscClient.send('/status', socket.id + ' connected');
+const wss = new WebSocket.Server({ port: 8080 });
 
-    oscServer.on('message', function(msg, rinfo) {
-      socket.emit('message', msg);
-      console.log('sent OSC message to WS', msg, rinfo);
+wss.on("connection", (socket) => {
+    console.log("A Web Socket connection has been established!");
+    const socketPort = new osc.WebSocketPort({
+        socket: socket,
+        metadata: true
     });
-  });
-  socket.on('message', function (obj) {
-    var toSend = obj.split(' ');
-    oscClient.send(...toSend);
-    console.log('sent WS message to OSC', toSend);
-  });
-  socket.on("disconnect", function () {
-    oscServer.kill();
-  })
+
+    socketPort.on("message", (message) => {
+        console.log("received message", message);
+    });
+
+    // set up relays to send and receive messages
+    new osc.Relay(socketPort, udpPortSend, {raw: true});
+});
+
+wss.on("message", (message) => {
+    console.log("received: " + message);
 });

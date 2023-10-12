@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node samplesToJSON.js && serve -l 5000"
+    "start": "concurrently \"node samplesToJSON.js && serve -l 5000\" \"node osc-bridge.js\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^8.2.1",
     "directory-tree": "^3.5.1",
     "fs": "^0.0.1-security",
-    "serve": "^14.2.1"
+    "serve": "^14.2.1",
+    "node-osc": "^1.2.0",
+		"socket.io": "^1.7.4"
   }
 }

@@ -21,10 +21,6 @@ wss.on("connection", (socket) => {
         metadata: true
     });
 
-    socketPort.on("message", (message) => {
-        console.log("received message", message);
-    });
-
     // set up relays to send and receive messages
     new osc.Relay(socketPort, udpPortSend, {raw: true});
 });

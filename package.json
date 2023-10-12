@@ -1,0 +1,17 @@
+{
+  "name": "zen-connect",
+  "version": "1.0.0",
+  "description": "A lightweight node server for zen, providing connection to OSC, custom samples and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node samplesToJSON.js && serve -l 5000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "directory-tree": "^3.5.1",
+    "fs": "^0.0.1-security",
+    "serve": "^14.2.1"
+  }
+}

@@ -21,7 +21,7 @@ Browsers can't send OSC messages directly. They have to send an OSC formatted me
 
 ...
 ### Samples
-Zen knows to look on localhost:5000 for samples. To serve your own samples:
+Zen knows to look on localhost:6000 for samples. To serve your own samples:
 * Drag folders of samples into `samples` folder. The file structure should look something like this:
 ```
 ├── samples  

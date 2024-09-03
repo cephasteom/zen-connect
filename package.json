@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node samplesToJSON.js && serve -l 5000\" \"node osc-bridge.js\""
+    "start": "concurrently \"node samplesToJSON.js && serve -l 6000\" \"node osc-bridge.js\""
   },
   "author": "",
   "license": "ISC",
